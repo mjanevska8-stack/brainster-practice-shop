@@ -1,0 +1,12 @@
+{
+  "name": "brainster-practice-shop",
+  "version": "1.0.0",
+  "description": "Practice shop API for Brainster Academy",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
