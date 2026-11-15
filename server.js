@@ -29,7 +29,30 @@ app.get("/items/:id", (req, res) => {
 
   res.json(product);
 });
+// Product Quality Assistant
+app.post("/product-quality/check", (req, res) => {
+  const product = req.body;
 
+  const requiredFields = ["name", "brand", "category"];
+  const missingFields = [];
+
+  requiredFields.forEach(field => {
+    if (!product[field]) {
+      missingFields.push(field);
+    }
+  });
+
+  const status = missingFields.length > 0 ? "incomplete" : "complete";
+
+  res.json({
+    product_name: product.name || null,
+    validation: {
+      status: status,
+      missing_fields: missingFields
+    },
+    requires_human_review: status !== "complete"
+  });
+});
 app.listen(PORT, () => {
   console.log(`Shop API running on port ${PORT}`);
 });
